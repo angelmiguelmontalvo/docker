@@ -17,7 +17,7 @@ const ipv4 = async () => {
 
 const execute = async () => {
     console.info('Time: ', moment().format('HH:mm:ss'));
-    console.info('Data: ', moment().format('DD-MM-YYYY'))
+    console.info('Date: ', moment().format('DD-MM-YYYY'))
     console.info('Time zone:', moment.tz.guess());
     console.info('hostname:', os.hostname());
     console.info('Ip address:', await ipv4());

@@ -26,9 +26,9 @@ $ docker build -t task2 \
    --build-arg BUILD_DATE="$BUILD_DATE" \
    .
  
-Run image:
+Run image, attach the volume to current server localtime to get time zone:
 
-$ docker run task2
+$ docker run -v /etc/localtime:/etc/localtime:ro  task2
 
 
 ### Automated build and publish
