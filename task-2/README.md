@@ -36,4 +36,3 @@ $ docker run -v /etc/localtime:/etc/localtime:ro  task2
 Run attached script build-image.sh <version>
 
 $ bash build-image.sh 1.0
-
