@@ -24,6 +24,3 @@ const execute = async () => {
 };
 
 execute();
-
-
-
