@@ -33,7 +33,7 @@ $ docker run -v /etc/localtime:/etc/localtime:ro  task2
 
 ### Automated build and publish
 
-Run attached scrip build-image.sh <version>
+Run attached script build-image.sh <version>
 
 $ bash build-image.sh 1.0
 
