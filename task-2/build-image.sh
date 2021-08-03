@@ -24,8 +24,7 @@ docker tag task2 angelmiguelmontalvo/task2:miguel.montalvo
 
 docker tag task2 10.24.191:8082/task2:miguel.montalvo
 
-docker tag task2 docker.jala.pro/task2:miguel.montalvo
+docker tag task2 docker.jala.pro/docker-training/task2:miguel.montalvo
+
 
 echo "Done"
-
-

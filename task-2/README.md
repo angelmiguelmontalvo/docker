@@ -26,14 +26,13 @@ $ docker build -t task2 \
    --build-arg BUILD_DATE="$BUILD_DATE" \
    .
  
-Run image, expose port 3101:
 
-$ docker run -d -p 3101:3101 --name task-2 task2
+Run image, expose port 3101,  attach the volume to current server localtime to get time zone:
 
+$ docker run -v /etc/localtime:/etc/localtime:ro -d -p 3101:3101 --name task-2 task2
 
 ### Automated build and publish
 
-Run attached scrip build-image.sh <version>
+Run attached script build-image.sh <version>
 
 $ bash build-image.sh 1.0
-
