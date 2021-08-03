@@ -20,14 +20,11 @@ docker build -t task2 \
    --build-arg BUILD_DATE="$BUILD_DATE" \
    .
 
-#docker build -t task2 angelmiguelmontalvo/task2:miguel.montalvo && \
-#docker push angelmiguelmontalvo/task2:miguel.montalvo
+docker tag task2 angelmiguelmontalvo/task2:miguel.montalvo
 
-#docker build -t tasks 10.24.191:8082/task2:miguel.montalvo && \
-#docker push 10.24.191:8082/task2:miguel.montalvo
+docker tag task2 10.24.191:8082/task2:miguel.montalvo
 
-#docker build -t task2 docker.jala.pro/task2:miguel.montalvo && \
-#docker push docker.jala.pro/task2:miguel.montalvo
+docker tag task2 docker.jala.pro/task2:miguel.montalvo
 
 echo "Done"
 

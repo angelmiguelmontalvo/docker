@@ -18,6 +18,8 @@ LABEL com.jalasoft.engineeringTraining.author=$BUILD_AUTHOR \
 
 RUN apk update && apk add --no-cache tzdata
 
+EXPOSE 3101
+
 WORKDIR /src
 
 COPY . .

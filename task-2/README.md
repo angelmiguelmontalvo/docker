@@ -26,9 +26,9 @@ $ docker build -t task2 \
    --build-arg BUILD_DATE="$BUILD_DATE" \
    .
  
-Run image:
+Run image, expose port 3101:
 
-$ docker run task2
+$ docker run -d -p 3101:3101 --name task-2 task2
 
 
 ### Automated build and publish
