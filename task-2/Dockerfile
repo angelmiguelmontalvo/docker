@@ -1,4 +1,18 @@
-FROM node:alpine
+FROM node:alpine as builder
+
+WORKDIR /src
+
+RUN apk update && apk add --no-cache tzdata
+
+COPY . .
+
+RUN npm install
+
+FROM builder
+
+WORKDIR /src
+
+COPY --from=builder /src /src
 
 ARG GIT_BRANCH
 ENV BRANCH=$GIT_BRANCH
@@ -16,13 +30,7 @@ LABEL com.jalasoft.engineeringTraining.author=$BUILD_AUTHOR \
       com.jalasoft.engineeringTraining.commit=$COMMIT \
       com.jalasoft.engineeringTraining.branch=$BRANCH
 
-RUN apk update && apk add --no-cache tzdata
-
 EXPOSE 3101
-
-WORKDIR /src
-
-COPY . .
 
 RUN npm install
 
