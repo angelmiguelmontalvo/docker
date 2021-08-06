@@ -37,6 +37,9 @@ Run attached script build-image.sh <version>
 
 $ bash build-image.sh 1.0
 
+### Docker compose
+$ docker-compose up -d
+
 ### Display
 
 Open in browser http://<host>:3101. example http://10.24.48.103:3101
