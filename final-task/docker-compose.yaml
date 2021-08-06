@@ -1,0 +1,65 @@
+version: "3.3"
+services:
+    postgres:
+        image: postgres
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=${POSTGRES_USER}
+            - POSTGRES_USER=${POSTGRES_PASSWORD}
+        network:
+            finalTask
+        restart: always
+    sonarqube:
+        image: sonarqube:5.6
+        volumes:
+            - data:/opt/sonarqube/data
+            - extensions:/opt/sonarqube/extensions
+            - logs:/opt/sonarqube/logs
+        environment:
+            - SONARQUBE_JDBC_USERNAME=${SONARQUBE_JDBC_USERNAME}
+            - SONARQUBE_JDBS_PASSWORD=${SONARQUBE_JDBS_PASSWORD}
+        ports:
+            - "9000:9000"
+        network:
+            finalTask
+        restart: always
+    jenkins:
+        image: jenkins/jenkins
+        volumes:
+            - jenkins:/var/lib/jenkins
+        ports:
+            - "8080:8080"
+        network:
+            finalTask
+        restart: always
+    nexus:
+        image: sonatype/nexus3:3.18.1
+        environment:
+            - INSTALL4J_ADD_VM_PARAMS=${INSTALL4J_ADD_VM_PARAMS}
+        network:
+            finalTask
+        volumes:
+            - nexus-data:/nexus-data
+        restart: always
+    portainer:
+        image: portainer
+        ports:
+            - "8800:8000"
+            - "9900:9000"
+        volumes:
+            - docker_sock:/var/run/docker.sock
+            - portainer_data:/data portainer/portainer-ce
+        restart: always
+volumes:
+    pgdata:
+    data:
+    extensions:
+    logs:
+    jenkins:
+    nexus-data:
+    portainer:
+    docker_sock:
+
+network:
+    finalTask:
