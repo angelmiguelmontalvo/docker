@@ -1,16 +1,18 @@
-version: "3.3"
+version: '3.3'
 services:
     postgres:
+        container_name: final-postgress
         image: postgres
         volumes:
             - pgdata:/var/lib/postgresql/data
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
-            - POSTGRES_USER=${POSTGRES_PASSWORD}
-        network:
-            finalTask
+            - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+        networks: 
+            - finalTask
         restart: always
     sonarqube:
+        container_name: final-sonarqube
         image: sonarqube:5.6
         volumes:
             - data:/opt/sonarqube/data
@@ -21,36 +23,41 @@ services:
             - SONARQUBE_JDBS_PASSWORD=${SONARQUBE_JDBS_PASSWORD}
         ports:
             - "9000:9000"
-        network:
-            finalTask
+        networks:
+            - finalTask
         restart: always
     jenkins:
+        container_name: final-jenkins
         image: jenkins/jenkins
         volumes:
             - jenkins:/var/lib/jenkins
         ports:
             - "8080:8080"
-        network:
-            finalTask
+        networks:
+            - finalTask
         restart: always
     nexus:
-        image: sonatype/nexus3:3.18.1
-        environment:
-            - INSTALL4J_ADD_VM_PARAMS=${INSTALL4J_ADD_VM_PARAMS}
-        network:
-            finalTask
-        volumes:
-            - nexus-data:/nexus-data
+        container_name: final-nexus
+        image: sonatype/nexus3
         restart: always
+        ports:
+           - "8081:8081"
+        networks:
+           - nexus
+        volumes:
+           - /some/dir/nexus-data:/nexus-data 
     portainer:
-        image: portainer
+        container_name: final-portainer
+        image: portainer/portainer-ce
         ports:
             - "8800:8000"
             - "9900:9000"
         volumes:
             - docker_sock:/var/run/docker.sock
-            - portainer_data:/data portainer/portainer-ce
+            - portainer_data:/data
         restart: always
+        networks: 
+            - finalTask
 volumes:
     pgdata:
     data:
@@ -58,8 +65,9 @@ volumes:
     logs:
     jenkins:
     nexus-data:
-    portainer:
+    portainer_data:
     docker_sock:
 
-network:
+networks:
     finalTask:
+    nexus:
