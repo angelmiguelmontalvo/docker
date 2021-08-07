@@ -12,7 +12,7 @@ echo "version: "$BUILD_VERSION
 BUILD_DATE=$(date)
 echo "date: "$BUILD_DATE
 
-docker build -t task2 \
+docker build -t final_task \
    --build-arg GIT_BRANCH="$GIT_BRANCH" \
    --build-arg GIT_COMMIT="$GIT_COMMIT" \
    --build-arg BUILD_AUTHOR="$BUILD_AUTHOR" \
@@ -20,11 +20,10 @@ docker build -t task2 \
    --build-arg BUILD_DATE="$BUILD_DATE" \
    .
 
-docker tag task2 angelmiguelmontalvo/task2:miguel.montalvo
+docker tag final_task angelmiguelmontalvo/final_task:miguel.montalvo
 
-docker tag task2 10.24.191:8082/task2:miguel.montalvo
+docker tag final_task 10.24.191:8082/final_task:miguel.montalvo
 
-docker tag task2 docker.jala.pro/docker-training/task2:miguel.montalvo
-
+docker tag final_task docker.jala.pro/docker-training/final_task:miguel.montalvo
 
 echo "Done"

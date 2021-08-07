@@ -60,4 +60,5 @@ docker run -d -p 8800:8000 -p 9900:9000 \
     --name=portainer --restart=always \
 	-v docker_sock:/var/run/docker.sock \
 	-v portainer_data:/data portainer/portainer-ce
+	portainer
 echo "docker container portainer created"

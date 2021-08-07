@@ -1,0 +1,4 @@
+./node_modules
+README.md
+build-image.sh
+package-lock.json
